@@ -42,6 +42,7 @@ npm install allure-mocha
     "test": "mocha -r dotenv/config --no-timeouts"
   },
 ```
+- Pertama command untuk menjalankan test tanpa generate file `.json` gunakan `npm test` atau `npm test <path>`.
 - Jalankan `npm run report` untuk generate folder `allure-report` 
 - Kemudian jalankan `npm run start` pada terminal untuk meluncurkan allure-report pada browser dengan port `8080` (jangan stop/close/ctrl+c terminal)
 - Kemudian run selenium test yang diinginkan pada terminal lain dan akan generate folder `allure-results` secara otomatis.
@@ -49,5 +50,5 @@ npm install allure-mocha
 npm run generate
 npm run generate <path> // untuk path spesifik
 ```
-- Dan jalankan `npm run report` dan klik tombol refresh halaman port 8080
+- Dan jalankan `npm run report` dan klik tombol refresh halaman port 8080.
 
