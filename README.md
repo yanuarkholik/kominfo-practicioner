@@ -54,7 +54,7 @@ npm run generate <path> // untuk path spesifik
 
 ---
 ## Eksport Issue Allure-Report
-- Setelah menjalankan `npm run start` dan `npm run report` maka halaman Allure-Report akan muncul. ![allure-start](https://gitlab.javan.co.id/automation-test/template-automation/-/blob/main/data/source/allure-start.PNG)
+- Setelah menjalankan `npm run start` dan `npm run report` maka halaman Allure-Report akan muncul. ![allure-start](template-automation/data/source/allure-start.png)
 - Untuk mengunduh dokumen hasil menjalankan automation maka klik menu Suite dan klik icon download. ![allure-export](https://gitlab.javan.co.id/automation-test/template-automation/-/blob/main/data/source/allure-export-button.PNG)
 - Dokumen eksport berekstensi `.csv`, agar tampilan terlihat lebih baik maka block cell baris paling awal. ![block-line-csv](https://gitlab.javan.co.id/automation-test/template-automation/-/blob/main/data/source/block-semualine.png)
 - Kemudian klik menu Data pada excel dan klik Text-to-Column. Pilih radio button 'Delimiter' kemudian klik tombol Next. Pilih 'comma' kemudian klik tombol Next dan klik tombol Finish. ![data-text-t-column](https://gitlab.javan.co.id/automation-test/template-automation/-/blob/main/data/source/klik-data-text-to-column.png)
