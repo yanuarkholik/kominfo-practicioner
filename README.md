@@ -1,6 +1,49 @@
 # Template automation
 Dalam pengujian perangkat lunak, otomatisasi pengujian adalah penggunaan perangkat lunak yang terpisah dari perangkat lunak yang diuji untuk mengontrol pelaksanaan pengujian dan perbandingan hasil aktual dengan hasil pengujian yang diharapkan.
 
+
+## Project Architecture
+Berikut adalah arsitektur project:
+```
+project-root/
+├── config/                     # Configuration files
+│   ├── config.json             # General project configuration
+│   ├── browserConfig.js        # Browser-specific setup
+├── tests/                      # Test scripts
+│   ├── loginTests/             # Tests for login functionality
+│   │   └── loginTest.js
+│   ├── dashboardTests/         # Tests for dashboard functionality
+│   │   └── dashboardTest.js
+├── pages/                      # Page Object Model files
+│   ├── loginPage.js            # Login page object
+│   ├── dashboardPage.js        # Dashboard page object
+├── utils/                      # Utility functions
+│   ├── waitUtils.js            # Utilities for waiting for elements
+│   ├── screenshotUtils.js      # Utilities for taking screenshots 
+│   ├── dateUtils.js            # Utilities for getting date 
+│   ├── elementUtils.js         # Utilities for using web elements
+├── drivers/                    # WebDriver binaries (if required)
+├── node_modules/               # Dependencies
+├── package.json                # Project metadata and dependencies
+├── package-lock.json           # Dependency lock file
+├── .env                        # Environment variables
+├── .gitignore                  # Git ignore file
+└── README.md                   # Project documentation
+```
+
+- **config/**: Stores configuration files such as browser configurations and general project settings.
+- **tests/**: Contains test scripts, organized by modules (e.g., login tests, dashboard tests).
+- **pages/**: Implements the Page Object Model pattern with page objects for different pages (e.g., login page, dashboard page).
+- **utils/**: Contains utility functions for waiting for elements, taking screenshots, and other helper tasks.
+- **drivers/**: Includes WebDriver binaries if necessary for cross-browser testing.
+- **node_modules/**: Automatically generated when installing dependencies.
+- **.env**: Stores environment variables for the project.
+- **package.json**: Contains project metadata and dependency information.
+
+This architecture will help keep the project modular and organized, making it easier to maintain and scale as more tests are added. Each module is isolated, and utility functions can be reused across different test scripts.
+
+---
+
 ## Initiate Automation Project
 Project automation menggunakan [Node.js](https://nodejs.org/en/download) sebagai package manager
 ```
