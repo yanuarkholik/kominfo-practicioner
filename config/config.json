@@ -1,0 +1,9 @@
+{
+  "baseUrl":"https://google.com",
+  "timeout":30000,
+  "browsers":{
+    "chrome": "chrome",
+    "gecko": "gecko"
+  },
+  "interval": 500
+}
