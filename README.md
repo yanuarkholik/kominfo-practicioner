@@ -1,10 +1,10 @@
 # Template automation
 Dalam pengujian perangkat lunak, otomatisasi pengujian adalah penggunaan perangkat lunak yang terpisah dari perangkat lunak yang diuji untuk mengontrol pelaksanaan pengujian dan perbandingan hasil aktual dengan hasil pengujian yang diharapkan.
 
-```
-```
+
 ## Project Architecture
 Berikut adalah arsitektur project:
+```
 project-root/
 ├── config/                     # Configuration files
 │   ├── config.json             # General project configuration
@@ -29,7 +29,6 @@ project-root/
 ├── .env                        # Environment variables
 ├── .gitignore                  # Git ignore file
 └── README.md                   # Project documentation
-```
 ```
 
 - **config/**: Stores configuration files such as browser configurations and general project settings.
