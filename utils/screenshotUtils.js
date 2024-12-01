@@ -1,6 +1,7 @@
 const fs = require("fs");
+const path = require("path")
 const dateUtils = require('./dateUtils')
-const screenshotDirectory = path.join(__dirname, "../../result")
+const screenshotDirectory = path.join(__dirname, "../results")
 
 async function takeScreenShot(driver) {
     const date = new Date();
@@ -9,7 +10,7 @@ async function takeScreenShot(driver) {
     const formattedDate = dateUtils.formatDate(date);
     const screenshotPath = `${screenshotDirectory}/screenshot_${formattedDate}.png`;
     fs.writeFileSync(screenshotPath, screenshot, 'base64');
-    console.log(`Screenshot saved at: ${screenshotPath}
+    return console.log(`Screenshot saved at: ${screenshotPath}`)
 }
 
 module.exports = {
