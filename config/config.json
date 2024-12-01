@@ -1,5 +1,5 @@
 {
-  "baseUrl":"https://google.com",
+  "baseUrl":"https://www.selenium.dev/",
   "timeout":30000,
   "browsers":{
     "chrome": "chrome",
