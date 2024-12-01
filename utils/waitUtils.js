@@ -1,5 +1,7 @@
+const { until, wait, By} = require('selenium-webdriver');
 const config = require('../config/config.json')
-const screenshotUtils = require('./screenshotUtils')
+const screenshotUtils = require('./screenshotUtils');
+const { elementIsDisabled } = require('selenium-webdriver/lib/until');
 
 
 /**
@@ -14,30 +16,33 @@ const screenshotUtils = require('./screenshotUtils')
  * @throws {Error} If the element is not found or visible within the timeout.
  */
 async function waitForElement(driver, selector, timeout = config.timeout, interval = config.interval) {
-    const startTime = Date.now();
-  
-    while (Date.now() - startTime < timeout) {
-      console.log(`Locating element: ${selector}`);
-      try {
-        const element = await driver.wait(until.elementLocated(By.xpath(selector)), interval);
-        const isVisible = await element.isDisplayed();
-        if (isVisible) {
-          console.log(`Element located: ${selector}`);
-          return element;
-        }
-      } catch (error) {
-        // Log error but continue trying until timeout
-        console.log(`Attempt failed for element: ${selector}`);
+  const startTime = Date.now();
+
+  while (Date.now() - startTime < timeout) {
+    console.log(`Locating element: ${selector}`);
+    try {
+      const element = await driver.findElement(By.xpath(selector))
+      const isVisible = await driver.wait(until.elementIsVisible(await element))
+      if (isVisible) {
+        console.log(`Element located: ${selector}`);
+        return element;
       }
-      await driver.sleep(interval); // Wait before retrying
+    } catch (error) {
+      if (error.name === 'StaleElementReferenceError') {
+        console.log(`Stale element reference: ${selector}, retrying...`);
+        continue;
+      }
+      console.log(`Attempt failed for element: ${selector}`);
     }
-    // Take screenshot if element is not found
-    console.error(`Element not found: ${selector} within ${timeout} ms`);
-    await screenshotUtils.takeScreenShot(driver)
-    throw new Error(`Element with selector "${selector}" not found within ${timeout} ms`);
+    await driver.sleep(interval)
+  }
+  // Take screenshot if element is not found
+  console.error(`Element not found: ${selector} within ${timeout} ms`);
+  await screenshotUtils.takeScreenShot(driver)
+  throw new Error(`Element with selector "${selector}" not found within ${timeout} ms`);
 }
 
 module.exports = {
-    waitForElement: waitForElement,
+  waitForElement: waitForElement,
 }
 
