@@ -10,12 +10,9 @@ const waitUtils = require('./waitUtils')
  * 
  * @param {string} selector - XPath selector of the target element.
  */
-async function clickButtonUntilFindXpath(selector) {
+async function clickButtonUntilFindXpath(driver, selector) {
   var element = await waitUtils.waitForElement(driver, selector);
-
-  await driver.wait(until.elementIsVisible(element));
-  await driver.wait(until.elementIsEnabled(await driver.findElement(By.xpath(selector))));
-  await driver.findElement(By.xpath(selector)).click();
+  await element.click();
   console.log(`Element ${selector} is clicked`);
 }
 
@@ -24,7 +21,7 @@ async function clickButtonUntilFindXpath(selector) {
  * 
  * @param {string} selector - XPath selector of the button to click.
  */
-async function clickButtonXpath(selector) {
+async function clickButtonXpath(driver, selector) {
   await driver.wait(until.elementLocated(By.xpath(selector))).click();
 }
 
@@ -34,9 +31,8 @@ async function clickButtonXpath(selector) {
  * @param {string} selector - XPath selector of the input field.
  * @param {string} value - Value to input into the field.
  */
-async function fillFilledXpath(selector, value) {
-  const ele = await driver.wait(until.elementLocated(By.xpath(selector)));
-  await waitUtils.waitForElement(driver, selector);
+async function fillFilledXpath(driver, selector, value) {
+  const ele = await waitUtils.waitForElement(driver, selector);
   await ele.clear();
   await ele.sendKeys(value);
 }
@@ -46,7 +42,7 @@ async function fillFilledXpath(selector, value) {
  * 
  * @param {string} selector - XPath selector of the dropdown to click.
  */
-async function fillSelectXpath(selector) {
+async function fillSelectXpath(driver, selector) {
   await driver.findElement(By.xpath(selector)).click();
 }
 
@@ -55,9 +51,9 @@ async function fillSelectXpath(selector) {
  * 
  * @param {string} selector - XPath selector of the target element.
  */
-async function scrollByXpath(selector) {
-  const ScrollToNationality = await driver.findElement(By.xpath(selector));
+async function scrollByXpath(driver, selector) {
   await waitUtils.waitForElement(driver, selector);
+  const ScrollToNationality = await driver.findElement(By.xpath(selector));
   await driver.executeScript(
     "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });",
     ScrollToNationality
@@ -70,7 +66,7 @@ async function scrollByXpath(selector) {
  * 
  * @param {string} selector - XPath selector of the input field to clear.
  */
-async function clearInputXpath(selector) {
+async function clearInputXpath(driver, selector) {
   const ele = driver.findElement(By.xpath(selector));
   await ele.clear();
 }
@@ -81,7 +77,7 @@ async function clearInputXpath(selector) {
  * @param {string} selector - XPath selector of the element.
  * @returns {Promise<string>} The text content of the element.
  */
-async function getTextXpath(selector) {
+async function getTextXpath(driver, selector) {
   // tunggu sampai melihat element
   await waitUtils.waitForElement(driver, selector);
   const elemen = await driver.wait(until.elementLocated(By.xpath(selector)));
@@ -96,11 +92,10 @@ async function getTextXpath(selector) {
  * @param {string} selector - XPath selector of the element.
  * @param {string} expected - Expected text content of the element.
  */
-async function expectElementInPageByText(selector, expected) {
+async function expectElementInPageByText(driver, selector, expected) {
+  await waitUtils.waitForElement(driver, selector);
   const element = await driver.findElement(By.xpath(selector));
   let text = "";
-
-  await waitUtils.waitForElement(driver, selector);
   text = await element.getText();
 
   if (text !== expected) {
@@ -114,7 +109,7 @@ async function expectElementInPageByText(selector, expected) {
  * 
  * @param {string} selector - XPath selector of the element.
  */
-async function expectElementInPage(selector) {
+async function expectElementInPage(driver, selector) {
   await waitUtils.waitForElement(driver, selector);
 }
 
@@ -128,7 +123,7 @@ async function expectElementInPage(selector) {
  * @param {string} selector - The XPath selector used to find the elements.
  * @returns {Promise<number>} - A promise that resolves to the number of matching elements.
  */
-async function countElements(selector) {
+async function countElements(driver, selector) {
   await waitUtils.waitForElement(driver, selector);  // Wait until the element is located
   let count = await driver.findElements(By.xpath(selector));  // Find all matching elements
 
