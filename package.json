@@ -15,7 +15,7 @@
   "dependencies": {
     "allure-commandline": "^2.21.0",
     "chai": "^4.3.6",
-    "chromedriver": "^131.0.1",
+    "chromedriver": "^134.0.5",
     "dotenv": "^16.0.3",
     "selenium-webdriver": "^4.4.0"
   },

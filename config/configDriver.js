@@ -24,7 +24,9 @@ function createDriver(options = {}) {
     case 'chrome':
       const chrome = require('selenium-webdriver/chrome');
       browserOptions = new chrome.Options();
-      if (config.headless) browserOptions.addArguments('--headless', '--disable-gpu', '--window-size=1920,1080');
+      if (config.headless) browserOptions.addArguments(
+        '--disable-gpu', )
+        // '--window-size=1920,1080')
       browserOptions.addArguments('--start-maximized');
       break;
 

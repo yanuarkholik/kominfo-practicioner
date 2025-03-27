@@ -1,5 +1,5 @@
 {
-  "baseUrl":"https://www.selenium.dev/",
+  "baseUrl":"https://dignas.merapi.javan.id/",
   "timeout":30000,
   "browsers":{
     "chrome": "chrome",
