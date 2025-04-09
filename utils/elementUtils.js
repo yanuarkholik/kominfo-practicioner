@@ -22,7 +22,8 @@ async function clickButtonUntilFindXpath(driver, selector) {
  * @param {string} selector - XPath selector of the button to click.
  */
 async function clickButtonXpath(driver, selector) {
-  await driver.wait(until.elementLocated(By.xpath(selector))).click();
+  const ele = await waitUtils.waitForElement(driver, selector)
+  await ele.click()
 }
 
 /**
@@ -38,12 +39,26 @@ async function fillFilledXpath(driver, selector, value) {
 }
 
 /**
+ * Fills an input field specified by the XPath selector with the given value after clearing its existing content.
+ * 
+ * @param {string} selector - XPath selector of the input field.
+ * @param {string} value - Value to input into the field.
+ */
+async function pressKeyArrowDown(driver, selector) {
+  const ele = await waitUtils.waitForElement(driver, selector);
+  await ele.sendKeys(Key.ARROW_DOWN)
+  await ele.sendKeys(Key.ARROW_DOWN)
+  await ele.sendKeys(Key.ENTER);
+}
+
+/**
  * Selects an option by clicking a dropdown specified by the XPath selector.
  * 
  * @param {string} selector - XPath selector of the dropdown to click.
  */
-async function fillSelectXpath(driver, selector) {
-  await driver.findElement(By.xpath(selector)).click();
+async function fillSelectXpath(driver, selector, value) {
+  const ele = await waitUtils.waitForElement(driver, selector);
+  await ele.sendKeys(value);
 }
 
 /**
@@ -131,6 +146,7 @@ async function countElements(driver, selector) {
 }
 
 module.exports = {
+  pressKeyArrowDown: pressKeyArrowDown, 
   getTextXpath: getTextXpath,
   scrollByXpath: scrollByXpath,
   countElements: countElements,

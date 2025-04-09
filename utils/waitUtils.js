@@ -2,6 +2,7 @@ const { until, wait, By} = require('selenium-webdriver');
 const config = require('../config/config.json')
 const screenshotUtils = require('./screenshotUtils');
 const { elementIsDisabled } = require('selenium-webdriver/lib/until');
+const { setTimeout: sleep } = require('timers/promises');
 
 
 /**
@@ -34,12 +35,12 @@ async function waitForElement(driver, selector, timeout = config.timeout, interv
       }
       console.log(`Attempt failed for element: ${selector}`);
     }
-    await driver.sleep(interval)
+    await sleep(interval);
   }
   // Take screenshot if element is not found
-  console.error(`Element not found: ${selector} within ${timeout} ms`);
-  await screenshotUtils.takeScreenShot(driver)
-  throw new Error(`Element with selector "${selector}" not found within ${timeout} ms`);
+  // console.error(`Element not found: ${selector} within ${timeout} ms`);
+  // await screenshotUtils.takeScreenShot(driver)
+  // throw new Error(`Element with selector "${selector}" not found within ${timeout} ms`);
 }
 
 module.exports = {

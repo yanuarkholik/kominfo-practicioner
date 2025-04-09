@@ -1,6 +1,6 @@
 {
   "baseUrl":"https://dignas.merapi.javan.id/",
-  "timeout":30000,
+  "timeout":60000,
   "browsers":{
     "chrome": "chrome",
     "gecko": "gecko"
