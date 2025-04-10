@@ -15,8 +15,8 @@ class LoginPage {
         await this.getUrl();
 
         // Klik tombol Login
-        await elementUtils.clickButtonXpath(this.driver, "//a[text()='Login']");
-        await elementUtils.clickButtonUntilFindXpath(this.driver, "//*[contains(text(),  'Back to Application')]")
+        // await elementUtils.clickButtonXpath(this.driver, "//a[text()='Login']");
+        // await elementUtils.clickButtonUntilFindXpath(this.driver, "//*[contains(text(),  'Back to Application')]")
         await elementUtils.clickButtonXpath(this.driver, "//a[text()='Login']");
 
         // Jika ada form login, isi data (opsional, bisa disesuaikan)

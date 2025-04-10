@@ -1,5 +1,5 @@
 {
-  "baseUrl":"https://dignas.merapi.javan.id/",
+  "baseUrl":"https://dignas.stag.sdmdigital.id/",
   "timeout":60000,
   "browsers":{
     "chrome": "chrome",
